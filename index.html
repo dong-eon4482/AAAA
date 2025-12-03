@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>뒷동산 2025 송년회 초대장</title>
+    <!-- Tailwind CSS CDN 로드 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js 로드 (데이터 시각화) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <!-- Font Awesome 아이콘 로드 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* 사용자 정의 폰트 및 스타일 */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Song+Myung&display=swap');
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f5f5f4; /* Stone 100 */
+            color: #44403c; /* Stone 700 */
+        }
+
+        .font-serif {
+            font-family: 'Song Myung', serif; /* 명조체 스타일 */
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background-color: #d6d3d1; /* Stone 300 */
+            z-index: 0;
+        }
+
+        .glass-panel {
+            /* 네비게이션바의 투명 효과 */
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* Hero 섹션 애니메이션 (Background Blob) */
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-4000 { animation-delay: 4s; }
+    </style>
+</head>
+<body class="antialiased selection:bg-amber-200 selection:text-amber-900">
+
+    <!-- Navigation Bar (Sticky Header) -->
+    <nav class="fixed top-0 w-full z-50 glass-panel shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-serif text-xl font-bold text-amber-700"><i class="fas fa-mountain me-2"></i>뒷동산</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <button onclick="scrollToSection('invitation')" class="text-stone-600 hover:text-amber-600 transition-colors">모시는 글</button>
+                    <button onclick="scrollToSection('schedule')" class="text-stone-600 hover:text-amber-600 transition-colors">식순 안내</button>
+                    <button onclick="scrollToSection('preview')" class="text-stone-600 hover:text-amber-600 transition-colors">활동 보고</button>
+                    <button onclick="scrollToSection('location')" class="text-stone-600 hover:text-amber-600 transition-colors">오시는 길</button>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-stone-600 hover:text-amber-600 p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-stone-50 border-t border-stone-200">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <button onclick="scrollToSection('invitation')" class="block w-full text-left px-3 py-2 text-stone-600 hover:bg-amber-50 hover:text-amber-600 rounded-md">모시는 글</button>
+                <button onclick="scrollToSection('schedule')" class="block w-full text-left px-3 py-2 text-stone-600 hover:bg-amber-50 hover:text-amber-600 rounded-md">식순 안내</button>
+                <button onclick="scrollToSection('preview')" class="block w-full text-left px-3 py-2 text-stone-600 hover:bg-amber-50 hover:text-amber-600 rounded-md">활동 보고</button>
+                <button onclick="scrollToSection('location')" class="block w-full text-left px-3 py-2 text-stone-600 hover:bg-amber-50 hover:text-amber-600 rounded-md">오시는 길</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Title and Countdown) -->
+    <header class="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
+        <!-- Animated Background Blobs -->
+        <div class="absolute inset-0 z-0 opacity-10">
+            <div class="absolute top-0 left-0 w-64 h-64 bg-amber-300 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+            <div class="absolute top-0 right-0 w-64 h-64 bg-stone-300 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+            <div class="absolute -bottom-8 left-20 w-64 h-64 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
+            <div class="inline-block p-2 px-4 rounded-full bg-amber-100 text-amber-800 text-sm font-semibold mb-6 shadow-sm">
+                2025년 12월 4일 (목) 18:00
+            </div>
+            <h1 class="font-serif text-4xl md:text-6xl font-bold text-stone-800 mb-6 leading-tight">
+                2025 뒷동산<br>
+                <span class="text-amber-700">송년회</span>의 밤
+            </h1>
+            <p class="text-lg md:text-xl text-stone-600 mb-10 max-w-2xl mx-auto">
+                한 해의 끝자락, 소중한 인연들과 함께<br>
+                따뜻한 격려와 즐거움이 가득한 시간에 여러분을 초대합니다.
+            </p>
+            
+            <!-- Countdown Timer Display -->
+            <div class="grid grid-cols-4 gap-4 max-w-lg mx-auto mb-12">
+                <div class="bg-white p-4 rounded-xl shadow-md border border-stone-100">
+                    <span id="days" class="block text-2xl md:text-3xl font-bold text-amber-600">00</span>
+                    <span class="text-xs text-stone-500 uppercase">Days</span>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-md border border-stone-100">
+                    <span id="hours" class="block text-2xl md:text-3xl font-bold text-amber-600">00</span>
+                    <span class="text-xs text-stone-500 uppercase">Hours</span>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-md border border-stone-100">
+                    <span id="minutes" class="block text-2xl md:text-3xl font-bold text-amber-600">00</span>
+                    <span class="text-xs text-stone-500 uppercase">Minutes</span>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-md border border-stone-100">
+                    <span id="seconds" class="block text-2xl md:text-3xl font-bold text-amber-600">00</span>
+                    <span class="text-xs text-stone-500 uppercase">Seconds</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 1: 모시는 글 (Invitation Letter) -->
+    <section id="invitation" class="py-16 bg-white">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <i class="fas fa-quote-left text-3xl text-amber-200 mb-4"></i>
+                <h2 class="font-serif text-3xl font-bold text-stone-800 mb-2">모시는 글</h2>
+                <div class="w-16 h-1 bg-amber-500 mx-auto rounded"></div>
+            </div>
+            
+            <div class="space-y-6 text-lg text-stone-700 leading-relaxed text-justify">
+                <p>
+                    <span class="font-bold text-amber-800">존경하는 뒷동산 회원 여러분, 안녕하십니까.</span>
+                </p>
+                <p>
+                    다사다난했던 이천이십오 년도 한 해를 마무리하고, 새로운 이천이십육 년을 힘차게 맞이할 <span class="font-semibold">뒷동산 송년회</span>를 개최하게 되었습니다.
+                </p>
+                <p>
+                    지난 한 해 동안 보여주신 회원님들의 열정과 성원에 진심으로 감사드립니다. 소중한 분들과 함께 따뜻한 격려를 나누고, 즐거움이 가득한 추억을 만들 뜻깊은 자리를 마련했사오니, 부디 참석하시어 자리를 빛내주시기를 바랍니다.
+                </p>
+                <div class="mt-8 p-6 bg-stone-50 border-l-4 border-amber-500 rounded-r-lg">
+                    <h3 class="font-bold text-stone-800 mb-2"><i class="fas fa-star text-amber-500 mr-2"></i>특별 안내</h3>
+                    <ul class="list-none space-y-2 text-stone-600">
+                        <li><i class="fas fa-check text-amber-400 mr-2"></i><strong>푸짐한 경품 추첨:</strong> 행운의 주인공이 되어보세요!</li>
+                        <li><i class="fas fa-check text-amber-400 mr-2"></i><strong>게스트 참석 환영:</strong> 동료나 지인분들과 함께 오세요.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: 식순 안내 (Schedule Timeline) -->
+    <section id="schedule" class="py-16 bg-stone-100">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-3xl font-bold text-stone-800 mb-4">식순 안내</h2>
+                <p class="text-stone-600">뜻깊은 1부 행사와 즐거운 2부 만찬이 준비되어 있습니다.</p>
+            </div>
+
+            <div class="relative">
+                <!-- Center Line for Desktop Timeline -->
+                <div class="hidden md:block timeline-line"></div>
+
+                <!-- Part 1 Label -->
+                <div class="relative z-10 text-center mb-12">
+                    <span class="inline-block bg-stone-800 text-white px-6 py-2 rounded-full font-bold shadow-lg">1부: 공식 행사 (18:00 ~)</span>
+                </div>
+
+                <!-- Timeline Items Container -->
+                <div class="space-y-8 relative z-10" id="schedule-container">
+                    <!-- Schedule items will be dynamically generated by JS -->
+                </div>
+
+                <!-- Part 2 Label -->
+                <div class="relative z-10 text-center mt-16 mb-12">
+                    <span class="inline-block bg-amber-600 text-white px-6 py-2 rounded-full font-bold shadow-lg">2부: 화합의 시간 (19:30 ~)</span>
+                </div>
+
+                <!-- Part 2 Item (Fixed for simplicity) -->
+                <div class="relative z-10 flex flex-col md:flex-row items-center justify-center group">
+                    <div class="w-full md:w-1/2 md:pr-8 text-right hidden md:block">
+                        <h3 class="text-xl font-bold text-amber-800">레크레이션 및 만찬</h3>
+                    </div>
+                    <!-- Icon Circle -->
+                    <div class="w-12 h-12 bg-amber-500 rounded-full border-4 border-white shadow flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-glass-cheers text-white"></i>
+                    </div>
+                    <div class="w-full md:w-1/2 md:pl-8 mt-4 md:mt-0">
+                        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border-l-4 border-amber-500">
+                            <h3 class="text-xl font-bold text-stone-800 md:hidden mb-2">레크레이션 및 만찬</h3>
+                            <p class="text-stone-600">모두가 하나 되는 즐거운 게임과 맛있는 식사가 함께하는 시간입니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: 2025 활동 미리보기 (Analyst Dashboard with Charts) -->
+    <section id="preview" class="py-16 bg-white">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-10 border-b border-stone-200 pb-4">
+                <div>
+                    <h2 class="font-serif text-3xl font-bold text-stone-800 mb-2">2025년 활동 보고</h2>
+                    <p class="text-stone-500 text-sm">※ 송년회 당일, 상세한 활동 및 재무 보고가 진행됩니다. 아래는 미리보는 활동 요약입니다.</p>
+                </div>
+                <!-- Chart Toggle Buttons -->
+                <div class="flex space-x-2 mt-4 md:mt-0">
+                    <button id="btn-chart-activity" class="px-4 py-2 bg-stone-800 text-white rounded-lg text-sm hover:bg-stone-700 transition-colors">활동 추이</button>
+                    <button id="btn-chart-budget" class="px-4 py-2 bg-stone-200 text-stone-700 rounded-lg text-sm hover:bg-stone-300 transition-colors">재무 요약</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Text Summary Card -->
+                <div class="lg:col-span-1 space-y-4">
+                    <div class="bg-amber-50 p-6 rounded-xl border border-amber-100">
+                        <h3 class="font-bold text-amber-800 text-lg mb-2"><i class="fas fa-chart-line mr-2"></i>성장 포인트</h3>
+                        <p class="text-stone-700 text-sm mb-4">2025년은 뒷동산 회원님들의 적극적인 참여로 역대 최고의 참석률을 기록했습니다.</p>
+                        <div class="flex items-center justify-between border-t border-amber-200 pt-4">
+                            <span class="text-stone-600 font-medium">총 모임 횟수</span>
+                            <span class="text-2xl font-bold text-amber-600">12회</span>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-amber-200 pt-4 mt-2">
+                            <span class="text-stone-600 font-medium">신규 회원</span>
+                            <span class="text-2xl font-bold text-amber-600">+15명</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visualization Area (Chart) -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-stone-100 h-full flex flex-col justify-center">
+                        <div class="chart-container">
+                            <canvas id="mainChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Location & Info -->
+    <section id="location" class="py-16 bg-stone-100">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <!-- Map / Location Card -->
+                <div class="order-2 md:order-1">
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+                        <div class="bg-stone-800 p-6 text-white text-center">
+                            <i class="fas fa-map-marker-alt text-4xl mb-3 text-amber-500"></i>
+                            <h3 class="text-2xl font-bold">오시는 길</h3>
+                        </div>
+                        <div class="p-8 text-center space-y-6">
+                            <div>
+                                <h4 class="text-lg font-bold text-stone-800 mb-1">별이 빛나는 밤에 7080</h4>
+                                <p class="text-stone-500 text-sm">안산시 상록구 본오동 722번지</p>
+                            </div>
+                            <!-- Address Copy Button -->
+                            <button id="copy-btn" class="w-full py-3 bg-amber-100 text-amber-800 rounded-lg font-bold hover:bg-amber-200 transition-colors flex items-center justify-center">
+                                <i class="far fa-copy mr-2"></i> 주소 복사하기
+                            </button>
+                            <div id="copy-toast" class="hidden text-xs text-green-600 font-bold transition-opacity">
+                                주소가 복사되었습니다!
+                            </div>
+                            <div class="text-left bg-stone-50 p-4 rounded-lg text-sm text-stone-600">
+                                <p class="mb-2"><i class="fas fa-parking mr-2 text-stone-400"></i>주차 안내</p>
+                                <p>인근 공영주차장 또는 대중교통 이용을 권장합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Text (Awards, Gifts) -->
+                <div class="order-1 md:order-2 space-y-6">
+                    <div>
+                        <h2 class="font-serif text-3xl font-bold text-stone-800 mb-4">함께 만드는 밤</h2>
+                        <p class="text-stone-600 leading-relaxed">
+                            이번 송년회는 단순히 한 해를 마무리하는 자리가 아닙니다. 
+                            2026년의 새로운 비전을 공유하고, 서로의 노고를 치하하는 따뜻한 자리입니다.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-stone-200 text-center">
+                            <i class="fas fa-award text-3xl text-amber-500 mb-2"></i>
+                            <h4 class="font-bold text-stone-800">개근상 시상</h4>
+                            <p class="text-xs text-stone-500">성실함에 대한 감사</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-stone-200 text-center">
+                            <i class="fas fa-gifts text-3xl text-amber-500 mb-2"></i>
+                            <h4 class="font-bold text-stone-800">경품 추첨</h4>
+                            <p class="text-xs text-stone-500">푸짐한 행운의 기회</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (RSVP CTA) -->
+    <footer class="bg-stone-800 text-stone-300 py-12 border-t border-stone-700">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h3 class="font-serif text-2xl text-white mb-6">참석 여부를 알려주세요</h3>
+            <p class="mb-8 max-w-lg mx-auto">
+                원활한 행사 진행을 위해 11월 20일까지 참석 여부를 회신 부탁드립니다.<br>
+                게스트 동반 시 미리 말씀해 주세요.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <!-- Phone link for RSVP -->
+                <a href="tel:010-0000-0000" class="px-8 py-3 bg-amber-600 text-white rounded-full font-bold hover:bg-amber-500 transition-all shadow-lg transform hover:scale-105">
+                    <i class="fas fa-phone-alt mr-2"></i>전화로 알리기
+                </a>
+                <!-- SMS link for RSVP -->
+                <a href="sms:010-0000-0000" class="px-8 py-3 bg-transparent border-2 border-stone-500 text-stone-300 rounded-full font-bold hover:bg-stone-700 hover:text-white transition-all">
+                    <i class="fas fa-comment-dots mr-2"></i>문자로 알리기
+                </a>
+            </div>
+            <div class="mt-12 text-sm text-stone-500">
+                &copy; 2025 뒷동산. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- Data Store ---
+        const eventDate = new Date("December 4, 2025 18:00:00").getTime();
+        
+        // Schedule data for Part 1
+        const scheduleData = [
+            { id: 1, title: "개회사", time: "18:00", desc: "송년회의 시작을 알리는 말씀", icon: "fa-microphone" },
+            { id: 2, title: "송년회 축사", time: "18:05", desc: "한 해를 격려하는 축하 말씀", icon: "fa-star" },
+            { id: 3, title: "활동보고 및 재무보고", time: "18:15", desc: "2025년 활동 성과 및 투명한 재정 보고", icon: "fa-chart-pie" },
+            { id: 4, title: "25년도 임원진 인사", time: "18:30", desc: "한 해 동안 수고한 임원진 감사 인사", icon: "fa-users" },
+            { id: 5, title: "26년도 임원진 소개", time: "18:40", desc: "새로운 비전을 이끌어갈 임원진 소개", icon: "fa-user-tie" },
+            { id: 6, title: "개근상 시상", time: "18:50", desc: "모범적인 활동을 보여주신 회원 시상", icon: "fa-medal" },
+            { id: 7, title: "슬로건 발표 및 건배사", time: "19:00", desc: "새로운 도약을 위한 목표와 건배", icon: "fa-wine-glass" }
+        ];
+
+        // --- Countdown Logic ---
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            // Event already passed
+            if (distance < 0) {
+                document.getElementById("days").innerText = "D";
+                document.getElementById("hours").innerText = "-";
+                document.getElementById("minutes").innerText = "Day";
+                document.getElementById("seconds").innerText = "!!";
+                return;
+            }
+
+            // Calculate remaining time
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Update display
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+        }
+
+        // Run countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // --- Timeline Rendering ---
+        const scheduleContainer = document.getElementById('schedule-container');
+        
+        scheduleData.forEach((item, index) => {
+            const isLeft = index % 2 === 0; // Alternate sides for desktop
+            
+            // Flex layout based on side (Left items are right-aligned, Right items are left-aligned)
+            const html = `
+                <div class="flex flex-col md:flex-row items-center justify-between w-full group cursor-pointer" onclick="toggleDetail(${item.id})">
+                    <!-- Left side text (Visible on left items on desktop, hidden on right) -->
+                    <div class="order-1 w-full md:w-5/12 ${isLeft ? 'md:text-right md:pr-8' : 'md:hidden'}">
+                        ${isLeft ? `<h3 class="text-xl font-bold text-stone-800">${item.title}</h3><span class="text-amber-600 font-semibold">${item.time}</span>` : ''}
+                    </div>
+                    
+                    <!-- Icon Circle in the center -->
+                    <div class="z-20 order-1 flex items-center justify-center w-10 h-10 bg-stone-200 rounded-full ring-4 ring-white shadow-sm group-hover:bg-amber-500 group-hover:text-white transition-colors">
+                        <i class="fas ${item.icon} text-sm"></i>
+                    </div>
+                    
+                    <!-- Right side text (Visible on right items on desktop, hidden on left) -->
+                    <div class="order-1 w-full md:w-5/12 ${!isLeft ? 'md:pl-8' : 'md:hidden'}">
+                        ${!isLeft ? `<h3 class="text-xl font-bold text-stone-800">${item.title}</h3><span class="text-amber-600 font-semibold">${item.time}</span>` : ''}
+                    </div>
+
+                    <!-- Mobile View (Always visible below the icon for small screens) -->
+                    <div class="order-1 w-full md:hidden mt-2 text-center bg-white p-4 rounded-lg shadow-sm border border-stone-100">
+                         <h3 class="text-xl font-bold text-stone-800">${item.title}</h3>
+                         <span class="text-amber-600 font-semibold text-sm block mb-2">${item.time}</span>
+                         <p class="text-stone-600 text-sm">${item.desc}</p>
+                    </div>
+
+                    <!-- Desktop Detail View (Hidden by default - simple visual placeholder) -->
+                    <div id="detail-${item.id}" class="hidden w-full order-last mt-4 bg-white p-4 rounded-lg shadow-inner text-center md:col-span-3 mx-auto max-w-lg border-t-2 border-amber-200">
+                        <p class="text-stone-700">${item.desc}</p>
+                    </div>
+                </div>
+            `;
+            scheduleContainer.insertAdjacentHTML('beforeend', html);
+        });
+
+        // Simple toggle function for visual feedback (currently not used for detailed display)
+        function toggleDetail(id) {
+            // For simplicity in this layout, this function currently does nothing but can be extended
+            // to show/hide the detail-view on desktop if needed.
+        }
+
+        // --- Chart.js Logic for "Activity Report" ---
+        let mainChart;
+
+        function initCharts() {
+            const ctx = document.getElementById('mainChart').getContext('2d');
+            
+            // Data for Activity Trends (Bar Chart)
+            const activityData = {
+                labels: ['1월', '3월', '5월', '7월', '9월', '11월'],
+                datasets: [{
+                    label: '월별 회원 참석률 (%)',
+                    data: [65, 70, 75, 60, 85, 95],
+                    backgroundColor: 'rgba(217, 119, 6, 0.6)', // Amber 600
+                    borderColor: 'rgba(217, 119, 6, 1)',
+                    borderWidth: 1,
+                    borderRadius: 4
+                }]
+            };
+
+            // Data for Budget (Doughnut Chart)
+            const budgetData = {
+                labels: ['행사 운영', '식대 지원', '경품/시상', '운영비'],
+                datasets: [{
+                    label: '2025 예산 집행',
+                    data: [30, 45, 15, 10], // Percentage allocation
+                    backgroundColor: [
+                        'rgba(217, 119, 6, 0.8)', // Amber 600
+                        'rgba(245, 158, 11, 0.8)', // Amber 500
+                        'rgba(120, 113, 108, 0.8)', // Stone 500
+                        'rgba(168, 162, 158, 0.8)'  // Stone 400
+                    ],
+                    borderWidth: 0
+                }]
+            };
+
+            // Common options for responsiveness
+            const commonOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            };
+
+            // Initial Chart: Activity
+            mainChart = new Chart(ctx, {
+                type: 'bar',
+                data: activityData,
+                options: {
+                    ...commonOptions,
+                    scales: {
+                        y: { beginAtZero: true, max: 100 }
+                    }
+                }
+            });
+
+            // Button Event Listeners to switch charts
+            document.getElementById('btn-chart-activity').addEventListener('click', () => {
+                mainChart.destroy();
+                mainChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: activityData,
+                    options: {
+                        ...commonOptions,
+                        scales: { y: { beginAtZero: true, max: 100 } }
+                    }
+                });
+                toggleActiveBtn('btn-chart-activity', 'btn-chart-budget');
+            });
+
+            document.getElementById('btn-chart-budget').addEventListener('click', () => {
+                mainChart.destroy();
+                mainChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: budgetData,
+                    options: commonOptions
+                });
+                toggleActiveBtn('btn-chart-budget', 'btn-chart-activity');
+            });
+        }
+
+        // Function to handle button styling for active state
+        function toggleActiveBtn(activeId, inactiveId) {
+            const active = document.getElementById(activeId);
+            const inactive = document.getElementById(inactiveId);
+            
+            active.classList.replace('bg-stone-200', 'bg-stone-800');
+            active.classList.replace('text-stone-700', 'text-white');
+            
+            inactive.classList.replace('bg-stone-800', 'bg-stone-200');
+            inactive.classList.replace('text-white', 'text-stone-700');
+        }
+
+        // --- Utilities (Scroll and Menu) ---
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            const navHeight = document.getElementById('navbar').offsetHeight;
+            const elementPosition = el.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
+            
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Copy to Clipboard Function (using document.execCommand for iFrame compatibility)
+        document.getElementById('copy-btn').addEventListener('click', () => {
+            const address = "안산시 상록구 본오동 722번지 별이 빛나는 밤에 7080";
+            
+            const tempInput = document.createElement("input");
+            tempInput.value = address;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            // Show Toast Notification
+            const toast = document.getElementById('copy-toast');
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        });
+
+        // Initialize Charts on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            initCharts();
+        });
+    </script>
+</body>
+</html>
